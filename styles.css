@@ -1392,3 +1392,108 @@ footer {
     .cta-bridge-inner { flex-direction: column; text-align: center; }
     .cta-bridge-inner .btn { width: 100%; justify-content: center; }
 }
+
+/* =========================================
+   ALTERNANCIA DE FONDOS
+   ========================================= */
+
+/* Alcance Global → blanco */
+.benefits-light {
+    background: var(--bg-secondary);
+}
+.benefits-light .section-header h2 { color: var(--text-dark); }
+.benefits-light .section-subtitle { color: var(--text-mid); }
+.benefits-light .divider { background: linear-gradient(90deg, var(--gold), transparent); }
+.benefits-light .benefits-grid {
+    background: rgba(15,14,12,0.04);
+    border-color: rgba(15,14,12,0.06);
+}
+.benefits-light .benefit-card {
+    background: var(--bg-main);
+}
+.benefits-light .benefit-card:hover { background: #fff; }
+.benefits-light .benefit-card h3 { color: var(--text-dark); }
+.benefits-light .benefit-card p { color: var(--text-mid); }
+.benefits-light .benefit-icon {
+    border-color: var(--gold-border);
+}
+
+/* Servicios → oscuro */
+.services-dark {
+    background: var(--bg-dark);
+}
+.services-dark .section-header h2 { color: var(--text-on-dark); }
+.services-dark .section-subtitle { color: rgba(232,228,220,0.55); }
+.services-dark .service-card {
+    background: var(--bg-dark-2);
+    border-color: rgba(196,151,58,0.1);
+}
+.services-dark .service-card:hover {
+    background: rgba(30,28,25,0.9);
+    border-color: var(--gold-border);
+}
+.services-dark .service-card h3 { color: var(--text-on-dark); }
+.services-dark .service-card p { color: rgba(232,228,220,0.55); }
+.services-dark .service-features li { color: rgba(232,228,220,0.5); }
+.services-dark .btn-outline {
+    color: rgba(232,228,220,0.7);
+    border-color: rgba(232,228,220,0.2);
+}
+.services-dark .btn-outline:hover {
+    color: var(--gold);
+    border-color: var(--gold-border);
+    background: var(--gold-pale);
+}
+
+/* AREA → blanco */
+.metodologia-light {
+    background: var(--bg-main);
+}
+.metodologia-light .section-header h2 { color: var(--text-dark); }
+.metodologia-light .section-subtitle { color: var(--text-mid); }
+.metodologia-light .area-grid {
+    background: rgba(15,14,12,0.04);
+    border-color: rgba(15,14,12,0.06);
+}
+.metodologia-light .area-step {
+    background: var(--bg-secondary);
+}
+.metodologia-light .area-step:hover { background: #fff; }
+.metodologia-light .area-step h4 { color: var(--text-dark); }
+.metodologia-light .area-step p { color: var(--text-mid); }
+.metodologia-light .area-step-number { color: var(--gold); }
+.metodologia-light .step-letter { color: var(--gold); opacity: 0.1; }
+.metodologia-light .area-step:hover .step-letter { opacity: 0.2; }
+
+/* Sobre mí → oscuro */
+.about-dark {
+    background: var(--bg-dark);
+}
+.about-dark .about-content h2 { color: var(--text-on-dark); }
+.about-dark .about-content > p { color: rgba(232,228,220,0.55); }
+.about-dark .about-mission {
+    background: linear-gradient(90deg, rgba(196,151,58,0.08), transparent);
+}
+.about-dark .about-mission p { color: var(--text-on-dark); }
+.about-dark .credentials {
+    border-top-color: rgba(196,151,58,0.1);
+}
+.about-dark .cred-item { color: rgba(232,228,220,0.6); }
+.about-dark .image-wrapper::after {
+    border-color: rgba(196,151,58,0.2);
+}
+.about-dark .btn-outline {
+    color: rgba(232,228,220,0.7);
+    border-color: rgba(232,228,220,0.2);
+}
+.about-dark .btn-outline:hover {
+    color: var(--gold);
+    border-color: var(--gold-border);
+    background: var(--gold-pale);
+}
+
+/* Botón "más sobre mí" */
+.about-more-btn {
+    margin-top: 2rem;
+    display: inline-flex;
+}
