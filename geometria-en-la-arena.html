@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geometría en la arena — Coach César</title>
+    <meta name="description" content="Tres figuras trazadas en la playa a los veinte años que me enseñaron más sobre el desempeño humano que muchos libros. Una reflexión sobre el tiempo, la coherencia y la identidad.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        /* ── Post Hero ── */
+        .post-hero {
+            padding-top: 8rem;
+            padding-bottom: 5rem;
+            background: var(--bg-dark);
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+        .post-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 70% 60% at 50% 100%, rgba(196,151,58,0.06) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .post-hero .container { position: relative; z-index: 2; max-width: 860px; }
+
+        .post-meta-top {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        .post-meta-top span {
+            font-size: 0.78rem;
+            color: rgba(232,228,220,0.45);
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .post-meta-top svg { color: var(--gold); opacity: 0.7; }
+        .post-meta-dot { width: 3px; height: 3px; border-radius: 50%; background: rgba(232,228,220,0.2); }
+
+        .post-title {
+            font-family: var(--font-display);
+            font-size: clamp(2.2rem, 5vw, 3.75rem);
+            color: var(--text-on-dark);
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+        .post-title span { color: var(--gold); font-style: italic; }
+
+        .post-subtitle {
+            font-family: var(--font-body);
+            font-size: 1.05rem;
+            color: rgba(232,228,220,0.5);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.75;
+            font-weight: 300;
+        }
+
+        /* ── Version toggle ── */
+        .version-toggle-bar {
+            background: var(--bg-secondary);
+            border-bottom: 1px solid rgba(15,14,12,0.07);
+            padding: 1rem 0;
+            position: sticky;
+            top: 68px;
+            z-index: 100;
+        }
+        .version-toggle-inner {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .version-label {
+            font-size: 0.78rem;
+            color: var(--text-light);
+            letter-spacing: 0.05em;
+        }
+        .version-btns {
+            display: flex;
+            gap: 0.5rem;
+        }
+        .version-btn {
+            font-family: var(--font-body);
+            font-size: 0.78rem;
+            font-weight: 500;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            padding: 0.45rem 1.1rem;
+            border-radius: 2rem;
+            border: 1px solid rgba(15,14,12,0.12);
+            background: transparent;
+            color: var(--text-mid);
+            cursor: pointer;
+            transition: all var(--t-fast);
+        }
+        .version-btn.active {
+            background: var(--gold);
+            border-color: var(--gold);
+            color: var(--bg-dark);
+        }
+        .version-btn:not(.active):hover {
+            border-color: var(--gold-border);
+            color: var(--gold);
+        }
+
+        /* ── Post body ── */
+        .post-body {
+            background: var(--bg-main);
+            padding: 5rem 0;
+        }
+        .post-content-wrap {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Las dos versiones */
+        .version-short,
+        .version-long { display: none; }
+        .version-short.visible,
+        .version-long.visible { display: block; }
+
+        /* Tipografía del artículo */
+        .post-content {
+            font-family: var(--font-body);
+            font-size: 1.05rem;
+            line-height: 1.85;
+            color: var(--text-mid);
+        }
+        .post-content p { margin-bottom: 1.6rem; }
+        .post-content p:last-child { margin-bottom: 0; }
+
+        .post-content h2 {
+            font-family: var(--font-display);
+            font-size: 1.75rem;
+            color: var(--text-dark);
+            margin: 3rem 0 1.25rem;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        .post-content blockquote {
+            border-left: 3px solid var(--gold);
+            padding: 1.5rem 1.75rem;
+            margin: 2.5rem 0;
+            background: linear-gradient(90deg, var(--gold-pale), transparent);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+        }
+        .post-content blockquote p {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            font-style: italic;
+            color: var(--text-dark);
+            margin-bottom: 0;
+            line-height: 1.6;
+        }
+
+        .post-content strong { color: var(--text-dark); font-weight: 600; }
+
+        /* Separador de sección */
+        .post-divider {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin: 3rem 0;
+        }
+        .post-divider::before,
+        .post-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: rgba(15,14,12,0.07);
+        }
+        .post-divider-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--gold);
+            opacity: 0.5;
+        }
+
+        /* Lectura estimada badge */
+        .read-time {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.72rem;
+            color: var(--gold);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 2.5rem;
+            padding: 0.3rem 0.8rem;
+            border: 1px solid var(--gold-border);
+            border-radius: 2rem;
+            background: var(--gold-pale);
+        }
+
+        /* Footer del post */
+        .post-footer {
+            margin-top: 4rem;
+            padding-top: 2.5rem;
+            border-top: 1px solid rgba(15,14,12,0.07);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .back-to-blog {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-mid);
+            padding: 0.7rem 1.25rem;
+            border: 1px solid rgba(15,14,12,0.1);
+            border-radius: var(--radius-md);
+            transition: all var(--t-fast);
+        }
+        .back-to-blog:hover {
+            border-color: var(--gold-border);
+            color: var(--gold);
+            transform: translateX(-3px);
+        }
+        .back-to-blog svg { width: 16px; height: 16px; }
+
+        .share-row {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .share-label {
+            font-size: 0.78rem;
+            color: var(--text-light);
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+        .share-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px; height: 36px;
+            border-radius: 50%;
+            border: 1px solid rgba(15,14,12,0.1);
+            color: var(--text-mid);
+            transition: all var(--t-fast);
+        }
+        .share-btn:hover {
+            background: var(--gold);
+            border-color: var(--gold);
+            color: var(--bg-dark);
+        }
+
+        /* Bio autor */
+        .author-bio {
+            margin-top: 3rem;
+            padding: 2rem;
+            background: var(--bg-secondary);
+            border: 1px solid rgba(15,14,12,0.06);
+            border-radius: var(--radius-lg);
+            border-left: 3px solid var(--gold);
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+        }
+        .author-avatar {
+            width: 52px; height: 52px;
+            border-radius: 50%;
+            background: var(--gold-pale);
+            border: 1px solid var(--gold-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-display);
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--gold);
+            flex-shrink: 0;
+        }
+        .author-bio-text strong {
+            display: block;
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            margin-bottom: 0.3rem;
+        }
+        .author-bio-text p {
+            font-size: 0.85rem;
+            color: var(--text-mid);
+            line-height: 1.65;
+            margin: 0;
+        }
+
+        @media (max-width: 600px) {
+            .version-toggle-inner { flex-direction: column; align-items: flex-start; }
+            .post-footer { flex-direction: column; align-items: flex-start; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar scrolled" id="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">Coach<span>César</span></a>
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../index.html#home" class="nav-link">Inicio</a></li>
+                <li><a href="../index.html#services" class="nav-link">Servicios</a></li>
+                <li><a href="../index.html#metodologia" class="nav-link">Metodología AREA</a></li>
+                <li><a href="../index.html#about" class="nav-link">Sobre Mí</a></li>
+                <li><a href="../blog.html" class="nav-link" style="color:var(--gold);">Blog</a></li>
+                <li><a href="../index.html#contacto" class="nav-link">Contacto</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="post-hero">
+        <div class="container">
+            <div class="post-meta-top">
+                <span class="section-badge" style="margin-bottom:0;">Crecimiento Personal</span>
+                <span class="post-meta-dot"></span>
+                <span>
+                    <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="4" width="18" height="18" rx="2"></rect>
+                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                    </svg>
+                    12 Mar 2026
+                </span>
+                <span class="post-meta-dot"></span>
+                <span>Por César Pisello</span>
+            </div>
+            <h1 class="post-title">Geometría en <span>la arena</span></h1>
+            <p class="post-subtitle">Tres figuras trazadas en la playa a los veinte años que me enseñaron más sobre el desempeño humano que muchos libros.</p>
+        </div>
+    </header>
+
+    <!-- Barra de versiones -->
+    <div class="version-toggle-bar">
+        <div class="version-toggle-inner">
+            <span class="version-label">Elige tu modo de lectura</span>
+            <div class="version-btns">
+                <button class="version-btn active" data-version="short">
+                    Versión breve · 2 min
+                </button>
+                <button class="version-btn" data-version="long">
+                    Versión completa · 6 min
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contenido -->
+    <main class="post-body">
+        <div class="post-content-wrap">
+
+            <!-- ── VERSIÓN BREVE ── -->
+            <div class="version-short visible">
+                <article class="post-content">
+
+                    <p>En mis veintes, cuando todavía no sabía qué estaba buscando, me sentaba en la playa y dibujaba en la arena. No por metáfora. Simplemente necesitaba pensar con las manos.</p>
+
+                    <p>Tres figuras. Cada una me enseñó algo que tardé años en poder nombrar.</p>
+
+                    <h2>Una línea y un punto</h2>
+
+                    <p>Dibujaba una línea infinita: el tiempo. Sobre ella, un rectángulo pequeño: mi vida. Hacía zoom out. El rectángulo se reducía a un punto.</p>
+
+                    <p>La conclusión no fue oscura. Fue liberadora: <strong>la vida no es la norma, es la excepción.</strong> Si somos un destello tan breve, ese destello es extraordinariamente especial. No quiero que pase sin haber entendido el juego.</p>
+
+                    <h2>Un triángulo que nunca se mantenía</h2>
+
+                    <p>Tres vértices: cuerpo, mente, emoción. Intuitivamente sabía que rendir bien en dos significaba pagar el precio en la tercera. Lo que entonces interpreté como una falla personal, después entendí que es simplemente la naturaleza humana.</p>
+
+                    <blockquote><p>Lo que el cuerpo calla, la emoción lo grita. Lo que la mente ignora, el cuerpo lo acumula.</p></blockquote>
+
+                    <p>El triángulo no se resuelve. Se gestiona. Es la figura más honesta del desempeño humano.</p>
+
+                    <h2>Un cubo que no necesita solución</h2>
+
+                    <p>Me sentía como un cubo Rubik desarmado. Buscaba la versión "correcta" de mí mismo. El problema: cada vez que creía estar cerca, aprendía algo nuevo y cambiaba.</p>
+
+                    <p>Entendí que el observador modifica lo observado. Al intentar conocerme, me transformaba. Y eso no era el problema — era el proceso. Dejé de buscar la solución y empecé a valorar los mosaicos intermedios. Algunos de los mejores momentos de mi vida ocurrieron en configuraciones "incompletas".</p>
+
+                    <div class="post-divider"><span class="post-divider-dot"></span></div>
+
+                    <p>No estudié filosofía. Solo tenía preguntas, una playa y tiempo para pensar. Pero creo que el pensamiento que surge de la experiencia propia tiene una persistencia particular. Esas tres figuras me acompañaron mucho antes de tener nombre. Y siguen siendo el núcleo de lo que hoy hago.</p>
+
+                </article>
+            </div>
+
+            <!-- ── VERSIÓN COMPLETA ── -->
+            <div class="version-long">
+                <article class="post-content">
+
+                    <p>En mis veintes, mucho antes de conocer formalmente el coaching o la filosofía del lenguaje, tenía el hábito de caminar por la playa. Era una época de búsqueda. No la búsqueda ordenada y con objetivo de quien sabe lo que quiere — la otra. La que no sabe ni por qué camina.</p>
+
+                    <p>A veces me sentaba en la orilla y, con una rama o con el dedo, trazaba figuras en la arena. No lo hacía con intención filosófica. Lo hacía, creo, porque necesitaba pensar con las manos.</p>
+
+                    <p>Con el tiempo entendí que esos garabatos eran preguntas. Y que las preguntas que uno se hace a los veinte años, si se las toma en serio, pueden orientar el resto de su vida.</p>
+
+                    <h2>La línea y el rectángulo: la vida como excepción</h2>
+
+                    <p>Dibujaba una línea que se extendía hacia ambos lados hasta perderse. Esa línea era el tiempo: todo lo que existió antes de mí y todo lo que existirá después.</p>
+
+                    <p>Sobre esa línea, trazaba un pequeño rectángulo: mi vida.</p>
+
+                    <p>Al principio el rectángulo parecía tener peso. Pero entonces hacía un ejercicio mental de zoom out. Al alejarme lo suficiente, el rectángulo se encogía. Si la línea era verdaderamente infinita, mi existencia se reducía a un punto. Una nada.</p>
+
+                    <p>De ahí surgió una idea que me golpeó con fuerza: <strong>la vida no es la norma, es la excepción.</strong> La normalidad del universo es la inexistencia. Estar vivo es una interrupción breve en un océano de nada.</p>
+
+                    <p>A solas frente al mar, creí que era un pensamiento solitario o quizás oscuro. Con el tiempo descubrí que solo había tropezado con una piedra angular en la que otros pensadores ya se habían apoyado, con mucha más poesía. Vladimir Nabokov lo describió como una <em>"breve rendija de luz entre dos eternidades de oscuridad"</em>. El filósofo Lucrecio recordaba que, así como no sufrimos por los milenios anteriores a nacer, tampoco tiene sentido temer a los que vendrán. Mark Twain añadía que había estado muerto miles de millones de años antes de nacer y no había sufrido el más mínimo inconveniente por ello.</p>
+
+                    <p>Descubrir que mi dibujo tenía eco en la historia no me hizo sentir menos original. Me hizo sentir acompañado.</p>
+
+                    <blockquote><p>Si somos un destello tan breve, entonces somos un destello extraordinariamente especial. Si la vida es un recreo corto en medio de la inexistencia, quiero que ese recreo dure lo suficiente para entender bien el juego.</p></blockquote>
+
+                    <p>De ahí nació mi interés genuino por el aprendizaje y el desempeño: no por miedo a la oscuridad de la línea, sino por amor a la luz del rectángulo.</p>
+
+                    <h2>El triángulo: la coherencia que nadie me había enseñado</h2>
+
+                    <p>En esas mismas caminatas trazaba otra figura: un triángulo. En sus vértices escribía <em>cuerpo, mente y emoción</em>.</p>
+
+                    <p>Intuitivamente sentía que mantener el equilibrio entre las tres aristas era difícil. Podía rendir bien en dos, pero la tercera siempre terminaba reclamando su precio. Cuando me iba bien en el trabajo, descuidaba el cuerpo. Cuando estaba emocionalmente estable, la mente se dispersaba. El triángulo nunca se mantenía quieto.</p>
+
+                    <p>Lo que entonces interpreté como una falla personal, años después encontró nombre: <strong>coherencia</strong>. No somos piezas aisladas. Somos un sistema donde lo que el cuerpo calla, la emoción lo grita. Lo que la mente ignora, el cuerpo lo acumula.</p>
+
+                    <p>Esa dificultad juvenil no era incompetencia. Era la naturaleza humana. El equilibrio entre esas tres dimensiones no es un estado que se alcanza y se mantiene para siempre. Es un movimiento dinámico, permanente, que exige atención constante.</p>
+
+                    <p>Hoy trabajo con personas que rinden extraordinariamente bien en una o dos de esas dimensiones, pero cargan el costo en la tercera. Ejecutivos brillantes con el cuerpo agotado. Personas físicamente disciplinadas pero emocionalmente desconectadas. El triángulo sigue siendo, para mí, la figura más honesta del desempeño humano.</p>
+
+                    <h2>El cubo Rubik: dejar de buscar la solución correcta</h2>
+
+                    <p>La tercera figura no la tracé en la arena, pero vivía constantemente en mi cabeza.</p>
+
+                    <p>Me sentía como un cubo Rubik desarmado. Pasaba los días tratando de girar mis piezas para volver a alguna forma original, perfecta, correcta. Buscaba la versión definitiva de mí mismo, como si existiera una configuración "resuelta" de mi identidad que solo había que encontrar.</p>
+
+                    <p>El problema era que cada vez que creía estar cerca, algo cambiaba. Aprendía algo nuevo y me transformaba. Vivía algo difícil y también me transformaba. El cubo nunca se quedaba quieto.</p>
+
+                    <p>Con el tiempo entendí por qué: porque <strong>el observador modifica lo observado</strong>. Al intentar conocerme, cambiaba. Y eso no era el problema — era el proceso.</p>
+
+                    <p>Lo que cambió todo fue dejar de buscar la solución y empezar a valorar los mosaicos intermedios. Esas combinaciones que no son la configuración "correcta", pero que en sí mismas son coherentes, originales, interesantes. Algunos de los mejores momentos de mi vida ocurrieron en configuraciones incompletas.</p>
+
+                    <p>Hoy no soy un cubo que debe resolverse para quedarse en una estantería. Soy uno que puede armarse de infinitas formas, y eso ya no me angustia. Me entusiasma.</p>
+
+                    <div class="post-divider"><span class="post-divider-dot"></span></div>
+
+                    <p>No estudié filosofía. No tenía un método. Solo tenía preguntas, una playa y tiempo para pensar.</p>
+
+                    <p>Pero creo que el pensamiento genuino — el que surge de la experiencia propia, no del libro que debía leerse — tiene una persistencia particular. Esas tres figuras me acompañaron mucho antes de que tuvieran nombre académico, y siguen siendo el núcleo de lo que hoy hago como coach.</p>
+
+                    <p>La línea me enseñó el valor de estar vivo. El triángulo, la honestidad sobre el costo de ignorar alguna de nuestras dimensiones. El cubo Rubik, que la identidad no se resuelve: se diseña.</p>
+
+                    <p>Si hay algo que aprendí en este camino es que las preguntas más importantes no suelen llegar de los libros. Llegan caminando, en silencio, cuando uno se atreve a sentarse y dibujar.</p>
+
+                </article>
+            </div>
+
+            <!-- Bio autor -->
+            <div class="author-bio">
+                <div class="author-avatar">CP</div>
+                <div class="author-bio-text">
+                    <strong>César Pisello Luque</strong>
+                    <p>Ingeniero Comercial, Coach Ontológico certificado y consultor en desempeño organizacional. Trabaja con líderes y equipos en toda Hispanoamérica.</p>
+                </div>
+            </div>
+
+            <!-- Footer del post -->
+            <div class="post-footer">
+                <a href="../blog.html" class="back-to-blog">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                    </svg>
+                    Volver al Blog
+                </a>
+                <div class="share-row">
+                    <span class="share-label">Compartir</span>
+                    <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://keweq.github.io/coach-cesar-web/blog/geometria-en-la-arena.html" target="_blank" class="share-btn" aria-label="Compartir en LinkedIn">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
+                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-logo">
+                <a href="../index.html">Coach<span>César</span></a>
+                <p>Excelencia en Alto Desempeño</p>
+            </div>
+            <div class="footer-links">
+                <a href="../index.html#services">Servicios</a>
+                <a href="../index.html#metodologia">Modelo AREA</a>
+                <a href="../index.html#about">Perfil</a>
+                <a href="../blog.html">Blog</a>
+            </div>
+            <div class="footer-social">
+                <a href="#" aria-label="LinkedIn">
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Coach César. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+    <script>
+        // Toggle versiones
+        const btns = document.querySelectorAll('.version-btn');
+        const short = document.querySelector('.version-short');
+        const long = document.querySelector('.version-long');
+
+        btns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                btns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const v = btn.dataset.version;
+                if (v === 'short') {
+                    short.classList.add('visible');
+                    long.classList.remove('visible');
+                } else {
+                    long.classList.add('visible');
+                    short.classList.remove('visible');
+                }
+                // Scroll suave al inicio del contenido
+                document.querySelector('.post-body').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+    </script>
+</body>
+</html>
