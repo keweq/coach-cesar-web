@@ -384,11 +384,159 @@
                 </div>
             </div>
 
-            <div class="contact-form-wrapper"
-                style="height: 600px; border-radius: 12px; overflow: hidden; background: var(--bg-main);">
-                <!-- Integrated Google Calendar -->
-                <iframe src="https://calendar.app.google/hQHVksBUnoZJXZQTA" width="100%" height="100%" frameborder="0"
-                    scrolling="no"></iframe>
+            <!-- Formulario Multistep -->
+            <div class="multistep-form">
+
+                <!-- Indicador de pasos -->
+                <div class="form-steps">
+                    <div class="form-step-dot active" data-step="1">
+                        <span>1</span>
+                    </div>
+                    <div class="form-step-line"></div>
+                    <div class="form-step-dot" data-step="2">
+                        <span>2</span>
+                    </div>
+                    <div class="form-step-line"></div>
+                    <div class="form-step-dot" data-step="3">
+                        <span>3</span>
+                    </div>
+                </div>
+
+                <!-- Paso 1: Necesidad -->
+                <div class="form-panel active" id="step-1">
+                    <p class="form-step-label">Paso 1 de 3</p>
+                    <h3 class="form-panel-title">¿Qué te trae aquí?</h3>
+                    <p class="form-panel-sub">Cuéntame en qué área quieres trabajar para orientar mejor la conversación.</p>
+
+                    <div class="form-options">
+                        <label class="form-option">
+                            <input type="radio" name="servicio" value="individual">
+                            <div class="form-option-content">
+                                <strong>Coaching Individual</strong>
+                                <span>Quiero trabajar en mis metas, liderazgo o desarrollo personal</span>
+                            </div>
+                        </label>
+                        <label class="form-option">
+                            <input type="radio" name="servicio" value="organizacional">
+                            <div class="form-option-content">
+                                <strong>Coaching Organizacional</strong>
+                                <span>Quiero mejorar el desempeño de mi equipo o empresa</span>
+                            </div>
+                        </label>
+                        <label class="form-option">
+                            <input type="radio" name="servicio" value="explorar">
+                            <div class="form-option-content">
+                                <strong>Todavía explorando</strong>
+                                <span>No tengo claro aún, quiero conocer más antes de decidir</span>
+                            </div>
+                        </label>
+                    </div>
+
+                    <button class="btn btn-primary form-next" data-next="2">
+                        Continuar
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Paso 2: Datos -->
+                <div class="form-panel" id="step-2">
+                    <p class="form-step-label">Paso 2 de 3</p>
+                    <h3 class="form-panel-title">¿Cómo te contactamos?</h3>
+                    <p class="form-panel-sub">Solo lo esencial. Sin spam, sin listas de correo.</p>
+
+                    <div class="form-fields">
+                        <div class="form-field">
+                            <label>Nombre completo</label>
+                            <input type="text" id="f-nombre" placeholder="Tu nombre" autocomplete="name">
+                        </div>
+                        <div class="form-field">
+                            <label>Email</label>
+                            <input type="email" id="f-email" placeholder="tu@email.com" autocomplete="email">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label>Teléfono / WhatsApp</label>
+                                <input type="tel" id="f-telefono" placeholder="+56 9 1234 5678">
+                            </div>
+                            <div class="form-field">
+                                <label>País</label>
+                                <select id="f-pais">
+                                    <option value="">Selecciona</option>
+                                    <option>Argentina</option>
+                                    <option>Bolivia</option>
+                                    <option>Chile</option>
+                                    <option>Colombia</option>
+                                    <option>Costa Rica</option>
+                                    <option>Cuba</option>
+                                    <option>Ecuador</option>
+                                    <option>El Salvador</option>
+                                    <option>España</option>
+                                    <option>Guatemala</option>
+                                    <option>Honduras</option>
+                                    <option>México</option>
+                                    <option>Nicaragua</option>
+                                    <option>Panamá</option>
+                                    <option>Paraguay</option>
+                                    <option>Perú</option>
+                                    <option>Puerto Rico</option>
+                                    <option>República Dominicana</option>
+                                    <option>Uruguay</option>
+                                    <option>Venezuela</option>
+                                    <option>Otro</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-nav">
+                        <button class="btn btn-outline form-back" data-back="1">Volver</button>
+                        <button class="btn btn-primary form-next" data-next="3">
+                            Continuar
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Paso 3: Mensaje -->
+                <div class="form-panel" id="step-3">
+                    <p class="form-step-label">Paso 3 de 3</p>
+                    <h3 class="form-panel-title">¿Algo más que quieras compartir?</h3>
+                    <p class="form-panel-sub">Opcional. Cualquier contexto que me ayude a preparar mejor nuestra primera conversación.</p>
+
+                    <div class="form-fields">
+                        <div class="form-field">
+                            <textarea id="f-mensaje" rows="5" placeholder="Cuéntame brevemente tu situación actual, qué quieres lograr o cualquier pregunta que tengas..."></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-nav">
+                        <button class="btn btn-outline form-back" data-back="2">Volver</button>
+                        <button class="btn btn-primary" id="form-submit">
+                            Enviar mensaje
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Estado: Enviado -->
+                <div class="form-panel" id="step-success">
+                    <div class="form-success">
+                        <div class="form-success-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="32" height="32">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                        </div>
+                        <h3>Mensaje recibido</h3>
+                        <p>Gracias por escribir. Me pondré en contacto contigo en las próximas 24–48 horas.</p>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
@@ -445,6 +593,96 @@
 
     <!-- Custom JS -->
     <script src="script.js"></script>
+
+    <!-- Formulario Multistep JS -->
+    <script>
+    (function() {
+        const dots = document.querySelectorAll('.form-step-dot');
+        const lines = document.querySelectorAll('.form-step-line');
+
+        function goTo(step) {
+            // Ocultar todos los paneles
+            document.querySelectorAll('.form-panel').forEach(p => p.classList.remove('active'));
+            // Mostrar el panel target
+            const target = document.getElementById('step-' + step);
+            if (target) target.classList.add('active');
+
+            // Actualizar dots y lines
+            dots.forEach((dot, i) => {
+                const n = i + 1;
+                dot.classList.remove('active', 'done');
+                if (n < step) dot.classList.add('done');
+                else if (n === step) dot.classList.add('active');
+            });
+            lines.forEach((line, i) => {
+                line.classList.toggle('done', i + 1 < step);
+            });
+        }
+
+        // Botones siguiente
+        document.querySelectorAll('.form-next').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const next = parseInt(btn.dataset.next);
+                // Validación paso 1: debe seleccionar opción
+                if (next === 2) {
+                    const sel = document.querySelector('input[name="servicio"]:checked');
+                    if (!sel) {
+                        btn.textContent = 'Elige una opción primero';
+                        setTimeout(() => {
+                            btn.innerHTML = 'Continuar <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>';
+                        }, 1500);
+                        return;
+                    }
+                }
+                // Validación paso 2: nombre y email requeridos
+                if (next === 3) {
+                    const nombre = document.getElementById('f-nombre').value.trim();
+                    const email = document.getElementById('f-email').value.trim();
+                    if (!nombre || !email) {
+                        const fields = document.querySelectorAll('#step-2 input');
+                        fields.forEach(f => {
+                            if (!f.value.trim()) f.style.borderColor = 'rgba(196,58,58,0.5)';
+                        });
+                        setTimeout(() => fields.forEach(f => f.style.borderColor = ''), 2000);
+                        return;
+                    }
+                }
+                goTo(next);
+            });
+        });
+
+        // Botones volver
+        document.querySelectorAll('.form-back').forEach(btn => {
+            btn.addEventListener('click', () => goTo(parseInt(btn.dataset.back)));
+        });
+
+        // Envío
+        const submitBtn = document.getElementById('form-submit');
+        if (submitBtn) {
+            submitBtn.addEventListener('click', () => {
+                // Aquí se conectará el backend cuando esté listo
+                // Por ahora muestra el estado de éxito
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Enviando...';
+                setTimeout(() => {
+                    document.querySelectorAll('.form-panel').forEach(p => p.classList.remove('active'));
+                    document.getElementById('step-success').classList.add('active');
+                    dots.forEach(d => { d.classList.remove('active'); d.classList.add('done'); });
+                    lines.forEach(l => l.classList.add('done'));
+                }, 800);
+            });
+        }
+
+        // Resaltar opción al hacer clic
+        document.querySelectorAll('.form-option').forEach(opt => {
+            opt.addEventListener('click', () => {
+                document.querySelectorAll('.form-option').forEach(o => o.classList.remove('selected'));
+                opt.classList.add('selected');
+            });
+        });
+    })();
+    </script>
+
 </body>
 
 </html>

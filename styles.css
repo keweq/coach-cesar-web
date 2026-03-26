@@ -1086,3 +1086,252 @@ footer {
 @media (max-width: 600px) {
     .testimonios-grid { grid-template-columns: 1fr; }
 }
+
+/* =========================================
+   FORMULARIO MULTISTEP
+   ========================================= */
+.multistep-form {
+    background: var(--bg-secondary);
+    border: 1px solid rgba(15,14,12,0.06);
+    border-radius: var(--radius-lg);
+    padding: 3rem;
+    min-height: 480px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Indicador de pasos */
+.form-steps {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin-bottom: 2.5rem;
+}
+
+.form-step-dot {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(15,14,12,0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all var(--t-mid);
+}
+.form-step-dot span {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-light);
+    transition: color var(--t-mid);
+}
+.form-step-dot.active {
+    border-color: var(--gold);
+    background: var(--gold-pale);
+}
+.form-step-dot.active span { color: var(--gold); }
+.form-step-dot.done {
+    border-color: var(--gold);
+    background: var(--gold);
+}
+.form-step-dot.done span { color: var(--bg-dark); }
+
+.form-step-line {
+    flex: 1;
+    height: 1px;
+    background: rgba(15,14,12,0.08);
+    transition: background var(--t-mid);
+}
+.form-step-line.done { background: var(--gold); opacity: 0.4; }
+
+/* Paneles */
+.form-panel {
+    display: none;
+    flex-direction: column;
+    flex: 1;
+    animation: fadeSlideIn 0.3s ease;
+}
+.form-panel.active { display: flex; }
+
+@keyframes fadeSlideIn {
+    from { opacity: 0; transform: translateX(12px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+
+.form-step-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+}
+
+.form-panel-title {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    color: var(--text-dark);
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.form-panel-sub {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    margin-bottom: 2rem;
+    line-height: 1.65;
+}
+
+/* Opciones radio — Paso 1 */
+.form-options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+    flex: 1;
+}
+
+.form-option {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    border: 1.5px solid rgba(15,14,12,0.08);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all var(--t-fast);
+    background: var(--bg-main);
+}
+.form-option:hover {
+    border-color: var(--gold-border);
+    background: var(--bg-secondary);
+}
+.form-option input[type="radio"] { display: none; }
+.form-option input[type="radio"]:checked + .form-option-content {
+    color: var(--text-dark);
+}
+.form-option:has(input:checked) {
+    border-color: var(--gold);
+    background: var(--gold-pale);
+}
+
+.form-option-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+.form-option-content strong {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+.form-option-content span {
+    font-size: 0.8rem;
+    color: var(--text-light);
+    line-height: 1.4;
+}
+
+/* Campos — Paso 2 */
+.form-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+    flex: 1;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.form-field label {
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--text-mid);
+    letter-spacing: 0.03em;
+}
+
+.form-field input,
+.form-field select,
+.form-field textarea {
+    font-family: var(--font-body);
+    font-size: 0.925rem;
+    color: var(--text-dark);
+    background: var(--bg-main);
+    border: 1.5px solid rgba(15,14,12,0.08);
+    border-radius: var(--radius-md);
+    padding: 0.8rem 1rem;
+    transition: all var(--t-fast);
+    outline: none;
+    width: 100%;
+}
+.form-field input::placeholder,
+.form-field textarea::placeholder { color: var(--text-light); }
+
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+    border-color: var(--gold);
+    background: #fff;
+    box-shadow: 0 0 0 3px var(--gold-pale);
+}
+
+.form-field textarea { resize: vertical; min-height: 120px; line-height: 1.65; }
+
+/* Navegación entre pasos */
+.form-nav {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    margin-top: auto;
+}
+
+/* Estado éxito */
+.form-success {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex: 1;
+    gap: 1.25rem;
+    padding: 2rem 0;
+}
+
+.form-success-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: var(--gold-pale);
+    border: 1px solid var(--gold-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gold);
+}
+
+.form-success h3 {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    color: var(--text-dark);
+}
+
+.form-success p {
+    font-size: 0.95rem;
+    color: var(--text-mid);
+    max-width: 320px;
+    line-height: 1.7;
+}
+
+@media (max-width: 600px) {
+    .multistep-form { padding: 2rem 1.5rem; }
+    .form-row { grid-template-columns: 1fr; }
+}
