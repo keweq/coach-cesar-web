@@ -15,7 +15,7 @@
         .post-hero {
             padding-top: 8rem;
             padding-bottom: 5rem;
-            background: var(--bg-dark);
+            background: url('arena_y_figuras.jpg') center center / cover no-repeat;
             position: relative;
             overflow: hidden;
             text-align: center;
@@ -24,7 +24,12 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: radial-gradient(ellipse 70% 60% at 50% 100%, rgba(196,151,58,0.06) 0%, transparent 70%);
+            background: linear-gradient(
+                to bottom,
+                rgba(10,9,7,0.55) 0%,
+                rgba(10,9,7,0.45) 50%,
+                rgba(10,9,7,0.7) 100%
+            );
             pointer-events: none;
         }
         .post-hero .container { position: relative; z-index: 2; max-width: 860px; }
