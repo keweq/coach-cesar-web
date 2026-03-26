@@ -7,78 +7,123 @@
     <title>Blog - Coach César | Alto Desempeño</title>
     <meta name="description"
         content="Artículos, reflexiones y recursos sobre liderazgo, desempeño organizacional y crecimiento personal por Coach César.">
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap"
         rel="stylesheet">
-    <!-- Custom CSS -->
     <link rel="stylesheet" href="styles.css">
     <style>
-        /* Blog Specific Styles */
-        .blog-header {
-            padding-top: 150px;
-            padding-bottom: 3rem;
+        /* ── Blog: Hero Header ── */
+        .blog-hero {
+            padding-top: 8rem;
+            padding-bottom: 5rem;
+            background: var(--bg-dark);
+            position: relative;
+            overflow: hidden;
             text-align: center;
-            background: linear-gradient(135deg, #05070f 0%, #1a1e26 100%);
-            border-bottom: 1px solid var(--border-light);
         }
-
-        .blog-header h1 {
+        .blog-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 70% 60% at 50% 100%, rgba(196,151,58,0.06) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .blog-hero .container { position: relative; z-index: 2; }
+        .blog-hero h1 {
+            font-family: var(--font-display);
             font-size: clamp(2.5rem, 5vw, 4rem);
-            margin-bottom: 1rem;
+            color: var(--text-on-dark);
+            margin-bottom: 1.25rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+        .blog-hero h1 span { color: var(--gold); font-style: italic; }
+        .blog-hero p {
+            font-size: 1.05rem;
+            color: rgba(232,228,220,0.55);
+            max-width: 560px;
+            margin: 0 auto;
+            line-height: 1.75;
         }
 
-        .blog-header p {
-            font-size: 1.125rem;
-            max-width: 600px;
-            margin: 0 auto;
+        /* ── Blog: Grid ── */
+        .blog-main {
+            background: var(--bg-main);
+            padding: var(--section-py) 0;
         }
 
         .blog-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 2.5rem;
-            padding: 4rem 1.5rem;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
         }
 
+        /* ── Blog Card ── */
         .blog-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--border-light);
-            border-radius: var(--radius-md);
+            background: var(--bg-secondary);
+            border: 1px solid rgba(15,14,12,0.06);
+            border-radius: var(--radius-lg);
             overflow: hidden;
-            transition: all var(--transition-normal);
+            transition: all var(--t-mid);
             display: flex;
             flex-direction: column;
-            height: 100%;
         }
-
         .blog-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(206, 158, 88, 0.3);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--gold-border);
         }
 
         .blog-image {
-            height: 200px;
-            background: #1a2235;
+            height: 180px;
+            background: var(--bg-dark-2);
             position: relative;
             overflow: hidden;
+            display: flex;
+            align-items: flex-end;
+            padding: 1.25rem;
+        }
+        /* Gradiente decorativo por categoría */
+        .blog-image.cat-liderazgo {
+            background: linear-gradient(145deg, #1a1916 0%, #2a1f0a 100%);
+        }
+        .blog-image.cat-metodologia {
+            background: linear-gradient(145deg, #0f1520 0%, #1a1916 100%);
+        }
+        .blog-image.cat-personal {
+            background: linear-gradient(145deg, #120f1a 0%, #1a1916 100%);
+        }
+
+        /* Número decorativo de fondo */
+        .blog-image-num {
+            position: absolute;
+            top: 50%;
+            right: 1.5rem;
+            transform: translateY(-50%);
+            font-family: var(--font-display);
+            font-size: 6rem;
+            font-weight: 700;
+            color: rgba(196,151,58,0.08);
+            line-height: 1;
+            user-select: none;
         }
 
         .blog-category {
-            position: absolute;
-            top: 1rem;
-            left: 1rem;
-            background: var(--accent-gold);
-            color: var(--bg-main);
-            padding: 0.25rem 0.75rem;
-            border-radius: 4px;
-            font-size: 0.75rem;
+            display: inline-block;
+            font-family: var(--font-body);
+            font-size: 0.65rem;
             font-weight: 600;
+            letter-spacing: 0.18em;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            color: var(--gold);
+            padding: 0.3rem 0.75rem;
+            border: 1px solid var(--gold-border);
+            border-radius: 2rem;
+            background: rgba(196,151,58,0.1);
+            position: relative;
+            z-index: 1;
         }
 
         .blog-content {
@@ -86,33 +131,41 @@
             display: flex;
             flex-direction: column;
             flex-grow: 1;
+            gap: 0;
         }
 
         .blog-meta {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            margin-bottom: 1rem;
+            font-size: 0.78rem;
+            color: var(--text-light);
+            margin-bottom: 0.85rem;
             display: flex;
-            gap: 1rem;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .blog-meta svg { vertical-align: -2px; color: var(--gold); opacity: 0.7; }
+        .blog-meta-dot {
+            width: 3px; height: 3px;
+            border-radius: 50%;
+            background: var(--text-light);
+            opacity: 0.4;
         }
 
         .blog-title {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            line-height: 1.3;
+            font-family: var(--font-display);
+            font-size: 1.35rem;
+            font-weight: 600;
+            line-height: 1.25;
+            margin-bottom: 0.85rem;
+            color: var(--text-dark);
         }
-
-        .blog-title a {
-            transition: color var(--transition-fast);
-        }
-
-        .blog-title a:hover {
-            color: var(--accent-gold);
-        }
+        .blog-title a { color: inherit; transition: color var(--t-fast); }
+        .blog-title a:hover { color: var(--gold); }
 
         .blog-excerpt {
-            font-size: 0.95rem;
-            margin-bottom: 2rem;
+            font-size: 0.9rem;
+            line-height: 1.75;
+            color: var(--text-mid);
+            margin-bottom: 1.75rem;
             flex-grow: 1;
         }
 
@@ -120,29 +173,31 @@
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            color: var(--accent-gold);
-            font-weight: 500;
-            font-size: 0.9rem;
+            color: var(--gold);
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: gap var(--transition-fast);
+            transition: gap var(--t-fast);
+            margin-top: auto;
         }
+        .blog-read-more:hover { gap: 0.8rem; }
+        .blog-read-more svg { width: 14px; height: 14px; }
 
-        .blog-read-more:hover {
-            gap: 0.75rem;
+        /* ── Responsive ── */
+        @media (max-width: 1024px) {
+            .blog-grid { grid-template-columns: repeat(2, 1fr); }
         }
-
-        .blog-read-more svg {
-            width: 16px;
-            height: 16px;
+        @media (max-width: 600px) {
+            .blog-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 
 <body>
 
-    <!-- Navegación Sticky Glassmorphism -->
-    <nav class="navbar" id="navbar">
+    <!-- Navbar -->
+    <nav class="navbar scrolled" id="navbar">
         <div class="nav-container">
             <a href="index.html" class="logo">Coach<span>César</span></a>
             <div class="menu-toggle" id="mobile-menu">
@@ -155,112 +210,120 @@
                 <li><a href="index.html#services" class="nav-link">Servicios</a></li>
                 <li><a href="index.html#metodologia" class="nav-link">Metodología AREA</a></li>
                 <li><a href="index.html#about" class="nav-link">Sobre Mí</a></li>
-                <li><a href="blog.html" class="nav-link active">Blog</a></li>
+                <li><a href="blog.html" class="nav-link" style="color: var(--gold);">Blog</a></li>
                 <li><a href="index.html#contacto" class="nav-link">Contacto</a></li>
             </ul>
         </div>
     </nav>
 
-    <!-- Blog Header -->
-    <header class="blog-header">
-        <div class="container reveal active">
-            <h1>Reflexiones de <span style="color: var(--accent-gold); font-style: italic;">Alto Desempeño</span></h1>
-            <p>Estrategias, liderazgo y desarrollo organizacional bajo el prisma del Método AREA.</p>
+    <!-- Hero del Blog -->
+    <header class="blog-hero">
+        <div class="container">
+            <span class="section-badge">Ideas & Recursos</span>
+            <h1>Reflexiones de <span>Alto Desempeño</span></h1>
+            <p>Estrategias, liderazgo y desarrollo organizacional bajo el prisma del Modelo AREA.</p>
         </div>
     </header>
 
-    <!-- Blog Posts Grid -->
-    <main class="container">
-        <div class="blog-grid">
+    <!-- Grid de artículos -->
+    <main class="blog-main">
+        <div class="container">
+            <div class="blog-grid">
 
-            <!-- Post 1 Placeholder -->
-            <article class="blog-card reveal">
-                <div class="blog-image">
-                    <span class="blog-category">Liderazgo</span>
-                </div>
-                <div class="blog-content">
-                    <div class="blog-meta">
-                        <span><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor"
-                                stroke-width="2" style="vertical-align:-2px">
-                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <!-- Artículo 1 -->
+                <article class="blog-card reveal">
+                    <div class="blog-image cat-liderazgo">
+                        <span class="blog-image-num">01</span>
+                        <span class="blog-category">Liderazgo</span>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="4" width="18" height="18" rx="2"></rect>
                                 <line x1="16" y1="2" x2="16" y2="6"></line>
                                 <line x1="8" y1="2" x2="8" y2="6"></line>
                                 <line x1="3" y1="10" x2="21" y2="10"></line>
-                            </svg> 24 Feb 2026</span>
-                        <span>Coach César</span>
+                            </svg>
+                            24 Feb 2026
+                            <span class="blog-meta-dot"></span>
+                            Coach César
+                        </div>
+                        <h3 class="blog-title">
+                            <a href="blog/post-template.html">El arte de la delegación efectiva en equipos remotos</a>
+                        </h3>
+                        <p class="blog-excerpt">Delegar no es asignar tareas, es transferir confianza y responsabilidad. Cómo aplicar la Acción del Modelo AREA para empoderar a tu equipo sin perder el control.</p>
+                        <a href="blog/post-template.html" class="blog-read-more">
+                            Leer artículo
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                            </svg>
+                        </a>
                     </div>
-                    <h3 class="blog-title"><a href="blog/post-template.html">El arte de la delegación efectiva en
-                            equipos remotos</a></h3>
-                    <p class="blog-excerpt">Delegar no es simplemente asignar tareas, es transferir confianza y
-                        responsabilidad. Descubre cómo aplicar la 'Acción' del método AREA para empoderar a tu equipo.
-                    </p>
-                    <a href="blog/post-template.html" class="blog-read-more">
-                        Leer Artículo
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                        </svg>
-                    </a>
-                </div>
-            </article>
+                </article>
 
-            <!-- Post 2 Placeholder -->
-            <article class="blog-card reveal">
-                <div class="blog-image">
-                    <span class="blog-category">Metodología</span>
-                </div>
-                <div class="blog-content">
-                    <div class="blog-meta">
-                        <span><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor"
-                                stroke-width="2" style="vertical-align:-2px">
-                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <!-- Artículo 2 -->
+                <article class="blog-card reveal">
+                    <div class="blog-image cat-metodologia">
+                        <span class="blog-image-num">02</span>
+                        <span class="blog-category">Metodología</span>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="4" width="18" height="18" rx="2"></rect>
                                 <line x1="16" y1="2" x2="16" y2="6"></line>
                                 <line x1="8" y1="2" x2="8" y2="6"></line>
                                 <line x1="3" y1="10" x2="21" y2="10"></line>
-                            </svg> 15 Feb 2026</span>
-                        <span>Coach César</span>
+                            </svg>
+                            15 Feb 2026
+                            <span class="blog-meta-dot"></span>
+                            Coach César
+                        </div>
+                        <h3 class="blog-title">
+                            <a href="blog/post-template.html">Por qué fracasan los KPIs: la importancia de evaluar lo que importa</a>
+                        </h3>
+                        <p class="blog-excerpt">El error fatal de medir métricas de vanidad en lugar de resultados de impacto real. Cómo reconducir la estrategia antes de que sea tarde.</p>
+                        <a href="blog/post-template.html" class="blog-read-more">
+                            Leer artículo
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                            </svg>
+                        </a>
                     </div>
-                    <h3 class="blog-title"><a href="blog/post-template.html">Por qué fracasan los KPIs: La importancia
-                            de la 'E' de Evaluación</a></h3>
-                    <p class="blog-excerpt">Analizamos el error fatal de medir métricas de vanidad frente a resultados
-                        de impacto real, y cómo reconducir la estrategia corporativa a tiempo.</p>
-                    <a href="blog/post-template.html" class="blog-read-more">
-                        Leer Artículo
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                        </svg>
-                    </a>
-                </div>
-            </article>
+                </article>
 
-            <!-- Post 3 Placeholder -->
-            <article class="blog-card reveal">
-                <div class="blog-image">
-                    <span class="blog-category">Crecimiento Personal</span>
-                </div>
-                <div class="blog-content">
-                    <div class="blog-meta">
-                        <span><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor"
-                                stroke-width="2" style="vertical-align:-2px">
-                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <!-- Artículo 3 -->
+                <article class="blog-card reveal">
+                    <div class="blog-image cat-personal">
+                        <span class="blog-image-num">03</span>
+                        <span class="blog-category">Crecimiento Personal</span>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="4" width="18" height="18" rx="2"></rect>
                                 <line x1="16" y1="2" x2="16" y2="6"></line>
                                 <line x1="8" y1="2" x2="8" y2="6"></line>
                                 <line x1="3" y1="10" x2="21" y2="10"></line>
-                            </svg> 02 Feb 2026</span>
-                        <span>Coach César</span>
+                            </svg>
+                            02 Feb 2026
+                            <span class="blog-meta-dot"></span>
+                            Coach César
+                        </div>
+                        <h3 class="blog-title">
+                            <a href="blog/post-template.html">Rompiendo el techo de cristal interno del directivo</a>
+                        </h3>
+                        <p class="blog-excerpt">El coaching ontológico revela que las mayores limitaciones no provienen del mercado, sino de las narrativas internas que construimos sobre nosotros mismos.</p>
+                        <a href="blog/post-template.html" class="blog-read-more">
+                            Leer artículo
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                            </svg>
+                        </a>
                     </div>
-                    <h3 class="blog-title"><a href="blog/post-template.html">Rompiendo el techo de cristal interno del
-                            directivo</a></h3>
-                    <p class="blog-excerpt">El coaching ontológico revela que nuestras mayores limitaciones no provienen
-                        del mercado, sino de nuestras narrativas internas limitantes.</p>
-                    <a href="blog/post-template.html" class="blog-read-more">
-                        Leer Artículo
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                        </svg>
-                    </a>
-                </div>
-            </article>
+                </article>
 
+            </div>
         </div>
     </main>
 
@@ -275,14 +338,12 @@
                 <a href="index.html#services">Servicios</a>
                 <a href="index.html#metodologia">Modelo AREA</a>
                 <a href="index.html#about">Perfil</a>
-                <a href="blog.html" style="color: var(--accent-gold);">Blog</a>
+                <a href="blog.html" style="color: var(--gold);">Blog</a>
             </div>
             <div class="footer-social">
-                <!-- LinkedIn Placeholder -->
                 <a href="#" aria-label="LinkedIn">
-                    <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
-                        <path
-                            d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
                     </svg>
                 </a>
             </div>
@@ -292,7 +353,6 @@
         </div>
     </footer>
 
-    <!-- Custom JS (Reused for mobile menu and sticky navbar) -->
     <script src="script.js"></script>
 </body>
 
