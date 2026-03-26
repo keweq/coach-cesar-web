@@ -1335,3 +1335,60 @@ footer {
     .multistep-form { padding: 2rem 1.5rem; }
     .form-row { grid-template-columns: 1fr; }
 }
+
+/* =========================================
+   CONTACT NOTE
+   ========================================= */
+.contact-note {
+    margin-top: 1.5rem;
+    font-size: 0.8rem;
+    color: var(--text-light);
+    font-style: italic;
+    line-height: 1.6;
+}
+
+/* =========================================
+   CTA BRIDGE
+   ========================================= */
+.cta-bridge {
+    background: var(--bg-dark);
+    padding: 5rem 0;
+    position: relative;
+    overflow: hidden;
+}
+.cta-bridge::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 80% at 30% 50%, rgba(196,151,58,0.06) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.cta-bridge-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 2;
+}
+
+.cta-bridge-text { flex: 1; min-width: 280px; }
+
+.cta-bridge-text h2 {
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    color: var(--text-on-dark);
+    margin-bottom: 0.75rem;
+}
+.cta-bridge-text p {
+    font-size: 1rem;
+    color: rgba(232,228,220,0.55);
+    line-height: 1.7;
+    margin: 0;
+}
+
+@media (max-width: 600px) {
+    .cta-bridge-inner { flex-direction: column; text-align: center; }
+    .cta-bridge-inner .btn { width: 100%; justify-content: center; }
+}
